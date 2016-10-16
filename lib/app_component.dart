@@ -23,21 +23,27 @@ class AppComponent implements OnInit, OnDestroy {
 	AppComponent(FirebaseService this.fbService);
 
 	// method to add to the list via user input, then clear out the input fields
-	void addFavorite() {
-		fbService.addFavorite(name:name, type:type, choice:choice);
+	void addFavourite() {
+		print('from component');
+		String n = name.trim();
+		String t = type.trim();
+		String c = choice.trim();
+		fbService.addFavorite(name:n, type:t, choice:c);
 		name = "";
 		type = "";
 		choice = "";
 	}
 
-	// sign in on page load and grab the favorites from the service. Use async/await so that favorites is defined. I'm not sure why, but when I uncomment the signIn, it displays the new favorites twice (even though they're only in the db once). What I further don't understand is that the app works without ever calling this signIn method. Hmm. Curious
+	// sign in on page load and grab the favorites from the service. Use async/await so that favorites is defined
 	void ngOnInit() async {
-		//await fbService.signIn();
+		print('signing in');
+		await fbService.signIn();
 		favorites = fbService.favorites;
 	}
 
 	// log out when the page is closed
 	void ngOnDestroy() async {
+		print('signing out');
 		await fbService.signOut();
 	}
 
