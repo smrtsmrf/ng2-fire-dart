@@ -1,0 +1,20 @@
+<h1>List of Favorites</h1>
+<form (ngSubmit)="addFavorite()" #favoriteForm="ngForm">
+	<input [(ngModel)]="name" placeholder="Name" required>
+	<input [(ngModel)]="type" placeholder="Favorite what?" required>
+	<input [(ngModel)]="choice" placeholder="Choice" required>
+	<button type="submit" [disabled]="!favoriteForm.valid">Add</button>
+</form>
+
+<main>
+	<section class="header">
+		<div><b>Name</b></div>
+		<div><b>Type</b></div>
+		<div><b>Choice</b></div>
+	</section>
+	<section *ngFor="let fav of fbService.favorites" class="table">
+		<div class="items">{{fav.name}}</div>
+		<div class="items">{{fav.type}}</div>
+		<div class="items">{{fav.choice}}</div>
+	</section>
+</main>

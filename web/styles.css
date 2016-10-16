@@ -1,0 +1,17 @@
+.header {
+	border-bottom: solid #000 2px;
+	display: flex;
+	justify-content: space-around;
+	width: 40%;
+}
+
+.table {
+	display: flex;
+	justify-content: space-around;
+	text-align: center;
+	width: 40%;
+}
+
+.items {
+	width: 33%;
+}
