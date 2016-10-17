@@ -2,8 +2,9 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'package:angular2/core.dart';
-import 'dart:html';
+import 'dart:async';
 import 'firebase_service.dart';
+import 'favorite.dart';
 
 @Component(
     selector: 'my-app',
@@ -35,14 +36,14 @@ class AppComponent implements OnInit, OnDestroy {
 	}
 
 	// sign in on page load and grab the favorites from the service. Use async/await so that favorites is defined
-	void ngOnInit() async {
+	Future ngOnInit() async {
 		print('signing in');
 		await fbService.signIn();
 		favorites = fbService.favorites;
 	}
 
 	// log out when the page is closed
-	void ngOnDestroy() async {
+	Future ngOnDestroy() async {
 		print('signing out');
 		await fbService.signOut();
 	}
